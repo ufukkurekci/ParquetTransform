@@ -34,6 +34,11 @@
 			ek5_button = new Button();
 			label1 = new Label();
 			label2 = new Label();
+			label3 = new Label();
+			label4 = new Label();
+			today = new DateTimePicker();
+			tomarrow = new DateTimePicker();
+			dateRange = new CheckBox();
 			SuspendLayout();
 			// 
 			// ek3_button
@@ -79,10 +84,10 @@
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+			label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
 			label1.Location = new Point(18, 58);
 			label1.Name = "label1";
-			label1.Size = new Size(321, 20);
+			label1.Size = new Size(308, 19);
 			label1.TabIndex = 5;
 			label1.Text = "Olusturmak istediginiz dosya tipine tiklayiniz";
 			label1.Click += label1_Click;
@@ -98,11 +103,59 @@
 			label2.TabIndex = 6;
 			label2.Text = "Created by Ufuk Kürekci";
 			// 
+			// label3
+			// 
+			label3.AutoSize = true;
+			label3.Location = new Point(185, 139);
+			label3.Name = "label3";
+			label3.Size = new Size(61, 15);
+			label3.TabIndex = 9;
+			label3.Text = "StartDate :";
+			// 
+			// label4
+			// 
+			label4.AutoSize = true;
+			label4.Location = new Point(185, 191);
+			label4.Name = "label4";
+			label4.Size = new Size(60, 15);
+			label4.TabIndex = 10;
+			label4.Text = "EndDate : ";
+			// 
+			// today
+			// 
+			today.Location = new Point(260, 133);
+			today.Name = "today";
+			today.Size = new Size(188, 23);
+			today.TabIndex = 12;
+			// 
+			// tomarrow
+			// 
+			tomarrow.Location = new Point(260, 185);
+			tomarrow.Name = "tomarrow";
+			tomarrow.Size = new Size(188, 23);
+			tomarrow.TabIndex = 13;
+			// 
+			// dateRange
+			// 
+			dateRange.AutoSize = true;
+			dateRange.Location = new Point(197, 105);
+			dateRange.Name = "dateRange";
+			dateRange.Size = new Size(88, 19);
+			dateRange.TabIndex = 14;
+			dateRange.Text = "Tarih Araligi";
+			dateRange.UseVisualStyleBackColor = true;
+			dateRange.CheckedChanged += dateRange_CheckedChanged;
+			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(409, 394);
+			ClientSize = new Size(480, 394);
+			Controls.Add(dateRange);
+			Controls.Add(tomarrow);
+			Controls.Add(today);
+			Controls.Add(label4);
+			Controls.Add(label3);
 			Controls.Add(label2);
 			Controls.Add(label1);
 			Controls.Add(ek5_button);
@@ -124,5 +177,10 @@
 		private Button ek5_button;
 		private Label label1;
 		private Label label2;
+		private Label label3;
+		private Label label4;
+		private DateTimePicker today;
+		private DateTimePicker tomarrow;
+		private CheckBox dateRange;
 	}
 }

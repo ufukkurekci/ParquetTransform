@@ -14,31 +14,35 @@ namespace EK7.NormalVersion
     public class EK7_ParquetOpertion
     {
         public static string ek7filename = "";
+        public static DateTime? today = null;
+        public static DateTime? tomarrow = null;
 
 		public async Task GetParquetFile()
         {
             // Veritabanı bağlantı dizesi
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-
-            //builder.DataSource = "172.25.84.24";
-            //builder.UserID = "quantra";
-            //builder.Password = "quantra2";
-            //builder.InitialCatalog = "EPara";
-            //builder.Encrypt = true;
-            //builder.TrustServerCertificate = true;
+            // UAT
+   //         builder.DataSource = "172.25.84.24";
+   //         builder.UserID = "quantra";
+   //         builder.Password = "quantra2";
+   //         builder.InitialCatalog = "EPara";
+   //         builder.Encrypt = true;
+   //         builder.TrustServerCertificate = true;
+			//builder.CommandTimeout = 0;
+			// UAT
 
 			builder.DataSource = "PRD-SQL-ETUGRA1";
-			builder.InitialCatalog = "EPara";
-			builder.IntegratedSecurity = true;
-			builder.TrustServerCertificate = true;
+            builder.InitialCatalog = "EPara";
+            builder.IntegratedSecurity = true;
+            builder.TrustServerCertificate = true;
             builder.CommandTimeout = 0;
 
 
-			// (EK7) Ödeme Kuruluşu Kart İşlem bilgileri formu           
-			// KK002_OKKIB_2020_12_20_0001.parquet
-			Random random = new Random();
+            // (EK7) Ödeme Kuruluşu Kart İşlem bilgileri formu           
+            // KK002_OKKIB_2020_12_20_0001.parquet
+            Random random = new Random();
 
-            string sqlQuery = "DECLARE @TODAY DATETIME = '20230602', @TOMORROW DATETIME = '20230603'\nSELECT distinct 'E'                                                                    as recordtype,\n                ctm.RECORD_ID                                                          as lref,\n                'KK002'                                                                as islemturu,\n                '9999999999'                                                           as ksahtkvkn,\n                'XXXXXXXXXX'                                                           as ksahtkunvan,\n                case\n                    when (customer.Name) is null or len(customer.Name) = 0 and customer.FirmName is null\n                        then 'XXXXXXXXXX'\n                    else UPPER(customer.Name)\n                    end                                                                as ksahgkad,\n                case\n                    when (customer.Surname) is null or len(customer.Surname) = 0 and customer.FirmName is null\n                        then 'XXXXXXXXXX'\n                    else UPPER(customer.Surname)\n                    end                                                                as ksahgksoyad,\n                case\n                    when customer.IdentityType = 1 THEN 4\n                    when customer.IdentityType = 2 THEN 5\n                    when customer.IdentityType = 3 THEN 3\n                    when customer.IdentityType = 4 THEN 1\n                    else 5\n                    END                                                                as ksahgkkimliktipi,\n                case\n                    when COALESCE(customer.CitizenshipNumber, customer.IdentityNo) is null or  len(COALESCE(customer.CitizenshipNumber, customer.IdentityNo))= 0 then '00000000'\n                    else COALESCE(customer.CitizenshipNumber, customer.IdentityNo) end as ksahgkkimlikno,\n                case\n                    when (ctm.MIFARE_ID) is null or len(ctm.MIFARE_ID) = 0\n                        then '0000000000'\n                    else ctm.MIFARE_ID\n                    end                                                                as ksahkartno,\n                '1'                                                                    as banktip,\n                '7777'                                                                 as bankeftkod,\n                '777777777777777'                                                      as bankatmkod,\n                case\n                    when (ctm.TRN_DATE) is null or len(ctm.TRN_DATE) = 0\n                        then '00000000'\n\n                    else ctm.TRN_DATE\n                    end                                                                as istar,\n                case\n                    when (ctm.TRN_AMOUNT) is null or len(ctm.TRN_AMOUNT) = 0\n                        then '0'\n                    else ctm.TRN_AMOUNT\n                    end                                                                as islemtutar,\n                case\n                    when (ctm.TRN_AMOUNT) is null or len(ctm.TRN_AMOUNT) = 0\n                        then '0'\n                    else ctm.TRN_AMOUNT\n                    end                                                                as asiltutar,\n                '949'                                                                  as parabirim,\n                '0'                                                                    as brutkomtut,\n                'XXXXXXXXX'                                                            as musaciklama,\n                case\n                    when (tcm.TRN_CODE_DESCRIPTION) is null or len(tcm.TRN_CODE_DESCRIPTION) = 0\n                        then 'XXXXXXXXX'\n                    else tcm.TRN_CODE_DESCRIPTION\n                    end                                                                as kuraciklama,\n                '002'                                                                  as kurumkod\nFROM EPara.CRD.CARD_MASTER as cm with (NOLOCK)\n         INNER JOIN [EPara].[TRN].[CARD_TRN_MASTER] ctm\n    WITH (nolock)\n                    ON ctm.MIFARE_ID = cm.MIFARE_ID and COALESCE(ctm.RECORD_STATUS, 'A') = 'A'\n         LEFT JOIN EPARA.TRN.CARD_TRN_LOAD ctl\n    WITH (NOLOCK)\n                   ON ctm.RECORD_ID = ctl.TRN_MASTER_ID and COALESCE(ctl.RECORD_STATUS, 'A') = 'A'\n         LEFT JOIN EPara.PRM.TRN_CODE_MATRIX AS tcm\n    WITH (nolock)\n                   ON tcm.TRN_CODE = ctm.TRN_CODE and COALESCE(tcm.RECORD_STATUS, 'A') = 'A'\n         LEFT JOIN EPara.POS.TERMINAL_MASTER as tm\n    with (nolock)\n                   on ctm.TERMINAL_NUMBER = tm.TERMINAL_NUMBER\n         LEFT JOIN [EPara].[PRM].[TERMINAL_TYPE] as tt\n    WITH (NOLOCK)\n                   ON tm.TERMINAL_TYPE = tt.TERMINAL_TYPE_CODE\n         LEFT JOIN CustomerDb.dbo.Customers customer on customer.Id = cm.CUSTOMER_NUMBER\nWHERE COALESCE(cm.RECORD_STATUS\n          , 'A') = 'A'\n  AND (\n        (\n                    ctm.TRN_STATUS in (1 /*'BAÅ\u009eARILI'*/\n                    , 5 /*'ASKIDA BAÅ\u009eARILI'*/\n                    )\n                AND ctm.TRN_CODE IN (\n                /*Harcama*/\n                                     '01080011000' --Harcama KontÃ¶rlÃ¼ - UlaÅŸÄ±m\n                , '51080011000' --Harcama Ä°ade KontÃ¶rlÃ¼ - UlaÅŸÄ±m\n                , '01080061000' --Harcama KontÃ¶rlÃ¼ QR - UlaÅŸÄ±m\n                , '51080061000' /*Harcama Ä°ade KontÃ¶rlÃ¼ QR - UlaÅŸÄ±m*/\n                , '05020010003' --Vizeleme GÃ¶revi - Ãœcretli - Biletmatik\n                , '05020010305' --Vizeleme GÃ¶revi - Kurumsal - Biletmatik\n                , '05020010006' --Vizeleme GÃ¶revi - Kart Bedelli - Biletmatik\n                , '05050010003' --Vizeleme GÃ¶revi - Ãœcretli - Akdom\n                , '05050010305' --Vizeleme GÃ¶revi - Kurumsal - Akdom\n                , '05050010006' --Vizeleme GÃ¶revi - Kart Bedelli - Akdom\n\n                )\n            )\n        OR (ctm.TRN_STATUS IN (1)\n        and ctl.TRN_RESPONSE = 1\n        and\n            ctm.TRN_CODE IN ('01010010000')) --/*Harcama - POS - Sanal Kese*/\n        OR (ctm.TRN_CODE = '51010010000'\n        and ctm.TRN_STATUS IN (1, 5)) --Harcama Ä°ade - POS - Sanal Kese\n    )\n and (cast(ctm.TRN_DATE as date) >= @TODAY and (cast(ctm.TRN_DATE as date) < @TOMORROW))";
+            string sqlQuery = "dbo.GENERATE_PARQUET_EK7";
 
 			using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
             {
@@ -48,8 +52,11 @@ namespace EK7.NormalVersion
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
+					command.CommandType = CommandType.StoredProcedure;
+					command.Parameters.AddWithValue("@TODAY", today);
+					command.Parameters.AddWithValue("@TOMORROW", tomarrow);
 
-                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+					using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
 
                         List<string> RecordType = new List<string>();
