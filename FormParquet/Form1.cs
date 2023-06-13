@@ -23,8 +23,8 @@ namespace FormParquet
 		private async void ek3_button_Click(object sender, EventArgs e)
 		{
 			Helper.DateRange(today.Value.Date, tomarrow.Value.Date, dateRange.Checked);
-			EK3_ParquetOperation.today = Helper.parametreToday;
-			EK3_ParquetOperation.tomarrow = Helper.parametreTomarrow;
+			EK3_ParquetOperation.today = string.Format("{0:yyyyMMdd}", Helper.parametreToday);
+			EK3_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", Helper.parametreTomarrow);
 
 			EK3_ParquetOperation parquetOperation = new EK3_ParquetOperation();
 			await parquetOperation.GetParquetFile();
@@ -37,8 +37,8 @@ namespace FormParquet
 		private async void ek4_button_Click(object sender, EventArgs e)
 		{
 			Helper.DateRange(today.Value.Date, tomarrow.Value.Date, dateRange.Checked);
-			EK4_ParquetOperation.today = Helper.parametreToday;
-			EK4_ParquetOperation.tomarrow = Helper.parametreTomarrow;
+			EK4_ParquetOperation.today = string.Format("{0:yyyyMMdd}", Helper.parametreToday);
+			EK4_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", Helper.parametreTomarrow);
 
 			EK4_ParquetOperation parquetOperation = new EK4_ParquetOperation();
 			await parquetOperation.GetParquetFile();
@@ -50,8 +50,8 @@ namespace FormParquet
 		private async void ek5_button_Click(object sender, EventArgs e)
 		{
 			Helper.DateRange(today.Value.Date, tomarrow.Value.Date, dateRange.Checked);
-			EK5_ParquetOperation.today = Helper.parametreToday;
-			EK5_ParquetOperation.tomarrow = Helper.parametreTomarrow;
+			EK5_ParquetOperation.today = string.Format("{0:yyyyMMdd}", Helper.parametreToday);
+			EK5_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", Helper.parametreTomarrow);
 
 			EK5_ParquetOperation parquetOperation = new EK5_ParquetOperation();
 			await parquetOperation.GetParquetFile();
@@ -64,8 +64,8 @@ namespace FormParquet
 		private async void ek7_button_Click(object sender, EventArgs e)
 		{
 			Helper.DateRange(today.Value.Date, tomarrow.Value.Date, dateRange.Checked);
-			EK7_ParquetOpertion.today = Helper.parametreToday;
-			EK7_ParquetOpertion.tomarrow = Helper.parametreTomarrow;
+			EK7_ParquetOpertion.today = string.Format("{0:yyyyMMdd}", Helper.parametreToday);
+			EK7_ParquetOpertion.tomarrow = string.Format("{0:yyyyMMdd}", Helper.parametreTomarrow);
 
 			EK7_ParquetOpertion parquetOperation = new EK7_ParquetOpertion();
 			await parquetOperation.GetParquetFile();

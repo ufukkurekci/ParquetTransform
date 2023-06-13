@@ -8,9 +8,9 @@ namespace FormParquet
 {
 	public static class Helper
 	{
-		public static DateTime?  parametreToday;
+		public static DateTime? parametreToday;
 		public static DateTime? parametreTomarrow;
-		public static void DateRange(DateTime date1, DateTime date2 , bool dateRangeChecked)
+		public static void DateRange(DateTime date1, DateTime date2, bool dateRangeChecked)
 		{
 			if (dateRangeChecked)
 			{
@@ -18,7 +18,7 @@ namespace FormParquet
 				parametreTomarrow = date2;
 				return;
 			}
-			
+
 			parametreToday = new DateTime(2022, 1, 1);
 			parametreTomarrow = DateTime.Now;
 		}
