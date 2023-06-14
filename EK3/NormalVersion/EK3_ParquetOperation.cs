@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using GlobalHelper;
+using Microsoft.Data.SqlClient;
 using ParquetSharp;
 using System;
 using System.Collections.Generic;
@@ -224,9 +225,9 @@ namespace EK3.NormalVersion
 
 
                         }
-						#endregion
+                        #endregion
 
-						ek3filename = GetDynamicFileName();
+                        ek3filename = FileNameHelper.GetDynamicFileName("KK002_SFP_");
 
 						using var file = new ParquetFileWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ek3_output", ek3filename), columns);
                         using var rowGroup = file.AppendRowGroup();
@@ -557,25 +558,5 @@ namespace EK3.NormalVersion
                 }
             }
         }
-
-		static int counter = 1;
-		static string GetCounter()
-		{
-			string counterString = counter.ToString().PadLeft(4, '0');
-			counter++;
-
-			return counterString;
-		}
-
-		public static string GetDynamicFileName()
-		{
-			string prefix = "KK002_SFP_";
-			string date = DateTime.Now.ToString("yyyy_MM_dd");
-			string counterString = GetCounter();
-
-			string fileName = $"{prefix}{date}_{counterString}.parquet";
-
-			return fileName;
-		}
 	}
 }

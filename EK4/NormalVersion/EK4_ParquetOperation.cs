@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using GlobalHelper;
+using Microsoft.Data.SqlClient;
 using ParquetSharp;
 using System.Data;
 using System.Diagnostics.Metrics;
@@ -156,9 +157,9 @@ namespace EK4.NormalVersion
                             KurumKodu.Add(reader.GetString("KurumKodu"));
 
                         }
-						#endregion
+                        #endregion
 
-						ek4filename = GetDynamicFileName();
+                        ek4filename = FileNameHelper.GetDynamicFileName("KK002_EPKBB_");
 
 						using var file = new ParquetFileWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ek4_output", ek4filename), columns);
                         using var rowGroup = file.AppendRowGroup();
@@ -290,24 +291,5 @@ namespace EK4.NormalVersion
                 }
             }
         }
-		static int counter = 1;
-		static string GetCounter()
-		{
-			string counterString = counter.ToString().PadLeft(4, '0');
-			counter++;
-
-			return counterString;
-		}
-
-		public static string GetDynamicFileName()
-		{
-			string prefix = "KK002_EPKBB_";
-			string date = DateTime.Now.ToString("yyyy_MM_dd");
-			string counterString = GetCounter();
-
-			string fileName = $"{prefix}{date}_{counterString}.parquet";
-
-			return fileName;
-		}
 	}
 }

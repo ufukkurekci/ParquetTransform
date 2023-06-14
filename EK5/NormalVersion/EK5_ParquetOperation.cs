@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using GlobalHelper;
+using Microsoft.Data.SqlClient;
 using ParquetSharp;
 using System.Data;
 using System.Text;
@@ -168,9 +169,9 @@ namespace EK5.NormalVersion
                             KurumKod.Add(reader.GetString("kurumkod"));
 
                         }
-						#endregion
+                        #endregion
 
-						ek5filename = GetDynamicFileName();
+                        ek5filename = FileNameHelper.GetDynamicFileName("KK002_EPHPYCNI_");
 
 						using var file = new ParquetFileWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ek5_output", ek5filename), columns);
                         using var rowGroup = file.AppendRowGroup();
@@ -322,25 +323,5 @@ namespace EK5.NormalVersion
                 }
             }
         }
-
-		static int counter = 1;
-		static string GetCounter()
-		{
-			string counterString = counter.ToString().PadLeft(4, '0');
-			counter++;
-
-			return counterString;
-		}
-
-		public static string GetDynamicFileName()
-		{
-			string prefix = "KK002_EPHPYCNI_";
-			string date = DateTime.Now.ToString("yyyy_MM_dd");
-			string counterString = GetCounter();
-
-			string fileName = $"{prefix}{date}_{counterString}.parquet";
-
-			return fileName;
-		}
 	}
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormParquet
+namespace GlobalHelper
 {
-	public static class Helper
+	public static class ParametherHelper
 	{
 		public static DateTime? parametreToday;
 		public static DateTime? parametreTomarrow;

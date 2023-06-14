@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		main_note.txt = main_note.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalHelper", "GlobalHelper\GlobalHelper.csproj", "{1A97EB17-2683-43E4-B4E8-1CFEA3C9ADCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{68879CFB-05A0-4283-9EF4-D2824B5D14E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68879CFB-05A0-4283-9EF4-D2824B5D14E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68879CFB-05A0-4283-9EF4-D2824B5D14E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A97EB17-2683-43E4-B4E8-1CFEA3C9ADCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A97EB17-2683-43E4-B4E8-1CFEA3C9ADCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A97EB17-2683-43E4-B4E8-1CFEA3C9ADCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A97EB17-2683-43E4-B4E8-1CFEA3C9ADCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

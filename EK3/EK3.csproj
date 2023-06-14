@@ -12,4 +12,8 @@
     <PackageReference Include="ParquetSharp" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GlobalHelper\GlobalHelper.csproj" />
+  </ItemGroup>
+
 </Project>
