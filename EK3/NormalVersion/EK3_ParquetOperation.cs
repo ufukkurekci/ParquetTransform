@@ -48,9 +48,6 @@ namespace EK3.NormalVersion
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
-					//command.CommandType = CommandType.StoredProcedure;
-					//command.Parameters.AddWithValue("@TODAY", today);
-					//command.Parameters.AddWithValue("@TOMORROW", tomarrow);
 
 					using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {

@@ -49,11 +49,6 @@ namespace EK4.NormalVersion
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
-					//command.CommandType = CommandType.StoredProcedure;
-					//command.Parameters.AddWithValue("@TODAY", today);
-					//command.Parameters.AddWithValue("@TOMORROW", tomarrow);
-
-					// Verileri SqlDataReader üzerinden oku
 					using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
                         List<string> RecordType = new List<string>();

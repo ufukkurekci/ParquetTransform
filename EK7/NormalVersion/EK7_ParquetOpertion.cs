@@ -52,9 +52,6 @@ namespace EK7.NormalVersion
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
-                    //command.CommandType = CommandType.StoredProcedure;
-                    //command.Parameters["@TODAY"].Value = today;
-                    //command.Parameters["@TOMORROW"].Value = tomarrow;
 
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {

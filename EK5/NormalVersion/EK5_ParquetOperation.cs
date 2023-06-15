@@ -19,20 +19,20 @@ namespace EK5.NormalVersion
 
             //uat
 
-            builder.DataSource = "172.25.84.24";
-            builder.UserID = "quantra";
-            builder.Password = "quantra2";
-            builder.InitialCatalog = "EPara";
-            builder.Encrypt = true;
-            builder.TrustServerCertificate = true;
-            builder.CommandTimeout = 0;
-            //uat
-
-            //builder.DataSource = "PRD-SQL-ETUGRA1";
+            //builder.DataSource = "172.25.84.24";
+            //builder.UserID = "quantra";
+            //builder.Password = "quantra2";
             //builder.InitialCatalog = "EPara";
-            //builder.IntegratedSecurity = true;
+            //builder.Encrypt = true;
             //builder.TrustServerCertificate = true;
             //builder.CommandTimeout = 0;
+            //uat
+
+            builder.DataSource = "PRD-SQL-ETUGRA1";
+            builder.InitialCatalog = "EPara";
+            builder.IntegratedSecurity = true;
+            builder.TrustServerCertificate = true;
+            builder.CommandTimeout = 0;
 
             // (EK5) E-para/Ödeme Kuruluşu Hesabına Para Yükleme/Çekme(Nakit) Formu
             // KK002_EPHPYCNI_2020_12_20_0001.parquet
@@ -46,10 +46,6 @@ namespace EK5.NormalVersion
 
                 using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                 {
-
-					//command.CommandType = CommandType.StoredProcedure;
-					//command.Parameters.AddWithValue("@TODAY", today);
-					//command.Parameters.AddWithValue("@TOMORROW", tomarrow);
 					
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
