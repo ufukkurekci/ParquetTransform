@@ -8,5 +8,11 @@
 //Console.WriteLine("Dosya olusturuluyor ");
 //validation.validation5();
 
-//Console.WriteLine("KK002_EPHPYCNI_2023_04_19_0004.parquet adında dosya exe dizininde parquet klasörü altında olusturuldu.");
-//Console.ReadLine();
+EK5_ParquetOperation.today = string.Format("{0:yyyyMMdd}", DateTime.Now.AddDays(-1));
+EK5_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", DateTime.Now);
+
+EK5_ParquetOperation parquetOperation = new EK5_ParquetOperation();
+await parquetOperation.GetParquetFile();
+
+Console.WriteLine($"{EK5_ParquetOperation.ek5filename} adında dosya exe dizininde parquet klasörü altında olusturuldu.");
+Console.ReadLine();

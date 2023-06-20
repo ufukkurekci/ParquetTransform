@@ -1,5 +1,4 @@
-﻿
-using EK4.NormalVersion;
+﻿using EK4.NormalVersion;
 
 //EK4_ParquetOperation parquetOperation = new EK4_ParquetOperation();
 //Console.WriteLine("Dosya olusturuluyor ..");
@@ -10,6 +9,12 @@ using EK4.NormalVersion;
 //Console.WriteLine("Dosya olusturuluyor ..");
 //validation.validation4();
 
-//Console.WriteLine("KK002_EPKBB_2023_04_19_0004.parquet adında dosya exe dizininde parquet klasörü altında olusturuldu.");
-//Console.ReadLine();
+EK4_ParquetOperation.today = string.Format("{0:yyyyMMdd}", DateTime.Now.AddDays(-1));
+EK4_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", DateTime.Now);
+
+EK4_ParquetOperation parquetOperation = new EK4_ParquetOperation();
+await parquetOperation.GetParquetFile();
+
+Console.WriteLine($"{EK4_ParquetOperation.ek4filename} adında dosya exe dizininde parquet klasörü altında olusturuldu.");
+Console.ReadLine();
 

@@ -8,7 +8,13 @@
 //Console.WriteLine("Dosya olusturuluyor ..");
 //validation.validation7();
 
-//Console.WriteLine("Ek7.parquet OKKIB adında dosya exe dizininde parquet klasörü altında olusturuldu.");
-//Console.ReadLine();
+EK7_ParquetOpertion.today = string.Format("{0:yyyyMMdd}", DateTime.Now.AddDays(-1));
+EK7_ParquetOpertion.tomarrow = string.Format("{0:yyyyMMdd}", DateTime.Now);
+
+EK7_ParquetOpertion parquetOperation = new EK7_ParquetOpertion();
+await parquetOperation.GetParquetFile();
+
+Console.WriteLine($"{EK7_ParquetOpertion.ek7filename} adında dosya exe dizininde parquet klasörü altında olusturuldu.");
+Console.ReadLine();
 
 

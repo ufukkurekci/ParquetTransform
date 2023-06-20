@@ -1,14 +1,19 @@
-﻿//using EK3.NormalVersion;
-
+﻿using EK3.NormalVersion;
 
 //Console.WriteLine("Dosya olusturuluyor ..");
-//EK3_ParquetOperation parquetOperation = new EK3_ParquetOperation();
-//parquetOperation.GetParquetFile();
+
+
+
+EK3_ParquetOperation.today = string.Format("{0:yyyyMMdd}", DateTime.Now.AddDays(-1));
+EK3_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", DateTime.Now);
+
+EK3_ParquetOperation parquetOperation = new EK3_ParquetOperation();
+await parquetOperation.GetParquetFile();
 
 //ek3_validation validation = new ek3_validation();
-////Console.WriteLine("Dosya olusturuluyor ..");
+//Console.WriteLine("Dosya olusturuluyor ..");
 //validation.validation3();
 
-//Console.WriteLine("KK002_SFP_2023_04_19_0004.parquet adında dosya exe dizininde parquet klasörü altında olusturuldu.");
-//Console.ReadLine();
+Console.WriteLine($"{EK3_ParquetOperation.ek3filename} adında dosya exe dizininde parquet klasörü altında olusturuldu.");
+Console.ReadLine();
 

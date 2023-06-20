@@ -21,19 +21,19 @@ namespace EK3.NormalVersion
             // Veritabanı bağlantı dizesi
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-			//uat
-			//builder.DataSource = "172.25.84.24";
-			//builder.UserID = "quantra";
-			//builder.Password = "quantra2";
-			//builder.InitialCatalog = "EPara";
-			//builder.Encrypt = true;
-			//builder.TrustServerCertificate = true;
-			//uat
+            //uat
+            //builder.DataSource = "172.25.84.24";
+            //builder.UserID = "quantra";
+            //builder.Password = "quantra2";
+            //builder.InitialCatalog = "EPara";
+            //builder.Encrypt = true;
+            //builder.TrustServerCertificate = true;
+            //uat
 
-			builder.DataSource = "PRD-SQL-ETUGRA1";
+            builder.DataSource = "PRD-SQL-ETUGRA1";
             builder.InitialCatalog = "EPara";
-			builder.IntegratedSecurity = true;
-			builder.TrustServerCertificate = true;
+            builder.IntegratedSecurity = true;
+            builder.TrustServerCertificate = true;
             builder.CommandTimeout = 0;
 
             // (EK3) Sanal-Fiziksel Pos Formu
