@@ -14,7 +14,7 @@ EK7_ParquetOpertion.tomarrow = string.Format("{0:yyyyMMdd}", DateTime.Now);
 EK7_ParquetOpertion parquetOperation = new EK7_ParquetOpertion();
 await parquetOperation.GetParquetFile();
 
-Console.WriteLine($"{EK7_ParquetOpertion.ek7filename} adında dosya exe dizininde parquet klasörü altında olusturuldu.");
+Console.WriteLine($"{EK7_ParquetOpertion.ek7filename} adında dosya exe dizininde parquet klasörü altında olusturuldu ve sftp ye yüklendi.");
 Console.ReadLine();
 
 

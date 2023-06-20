@@ -14,6 +14,6 @@ await parquetOperation.GetParquetFile();
 //Console.WriteLine("Dosya olusturuluyor ..");
 //validation.validation3();
 
-Console.WriteLine($"{EK3_ParquetOperation.ek3filename} adında dosya exe dizininde parquet klasörü altında olusturuldu.");
+Console.WriteLine($"{EK3_ParquetOperation.ek3filename} adında dosya exe dizininde parquet klasörü altında olusturuldu ve sftp ye yüklendi.");
 Console.ReadLine();
 

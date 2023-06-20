@@ -315,7 +315,11 @@ namespace EK5.NormalVersion
 
                         file.Close();
 
-                    }
+						string localFilePath = SftpHelper.LocalFilePath(ek5filename, "ek3_output");
+
+						SftpHelper.ConnectSftp(localFilePath);
+
+					}
                 }
             }
         }

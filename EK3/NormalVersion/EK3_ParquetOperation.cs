@@ -1,17 +1,12 @@
 ﻿using GlobalHelper;
 using Microsoft.Data.SqlClient;
 using ParquetSharp;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Encoding = System.Text.Encoding;
 
 namespace EK3.NormalVersion
 {
-    public class EK3_ParquetOperation
+	public class EK3_ParquetOperation
     {
 		public static string ek3filename = "";
 		public static string? today = null;
@@ -22,19 +17,19 @@ namespace EK3.NormalVersion
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
             //uat
-            //builder.DataSource = "172.25.84.24";
-            //builder.UserID = "quantra";
-            //builder.Password = "quantra2";
-            //builder.InitialCatalog = "EPara";
-            //builder.Encrypt = true;
-            //builder.TrustServerCertificate = true;
+            builder.DataSource = "172.25.84.24";
+            builder.UserID = "quantra";
+            builder.Password = "quantra2";
+            builder.InitialCatalog = "EPara";
+            builder.Encrypt = true;
+            builder.TrustServerCertificate = true;
             //uat
 
-            builder.DataSource = "PRD-SQL-ETUGRA1";
-            builder.InitialCatalog = "EPara";
-            builder.IntegratedSecurity = true;
-            builder.TrustServerCertificate = true;
-            builder.CommandTimeout = 0;
+            //builder.DataSource = "PRD-SQL-ETUGRA1";
+            //builder.InitialCatalog = "EPara";
+            //builder.IntegratedSecurity = true;
+            //builder.TrustServerCertificate = true;
+            //builder.CommandTimeout = 0;
 
             // (EK3) Sanal-Fiziksel Pos Formu
             // KK002_SFP_2020_12_20_0001.parquet
@@ -551,7 +546,11 @@ namespace EK3.NormalVersion
                         #endregion
                         file.Close();
 
-                    }
+                        string localFilePath = SftpHelper.LocalFilePath(ek3filename, "ek3_output");
+
+                        SftpHelper.ConnectSftp(localFilePath);
+
+					}
                 }
             }
         }
