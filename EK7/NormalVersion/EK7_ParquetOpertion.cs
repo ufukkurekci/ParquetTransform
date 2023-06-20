@@ -265,6 +265,7 @@ namespace EK7.NormalVersion
 
 
                         #endregion
+
                         file.Close();
 
 						string localFilePath = SftpHelper.LocalFilePath(ek7filename, "ek3_output");
