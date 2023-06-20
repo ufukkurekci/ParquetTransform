@@ -1,18 +1,12 @@
 ﻿using GlobalHelper;
 using Microsoft.Data.SqlClient;
 using ParquetSharp;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
-using System.Threading.Tasks;
-using Encoding = System.Text.Encoding;
 
 namespace EK7.NormalVersion
 {
-    public class EK7_ParquetOpertion
+	public class EK7_ParquetOpertion
     {
         public static string ek7filename = "";
         public static string? today = null;
@@ -270,7 +264,9 @@ namespace EK7.NormalVersion
 
 						string localFilePath = SftpHelper.LocalFilePath(ek7filename, "ek3_output");
 
-						SftpHelper.ConnectSftp(localFilePath);
+                        string remoteDirectory = "/data/real/OKKIB/";
+
+						SftpHelper.ConnectSftp(localFilePath, remoteDirectory);
 					}
                 }
             }

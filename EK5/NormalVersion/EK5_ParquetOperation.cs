@@ -168,7 +168,7 @@ namespace EK5.NormalVersion
                         #endregion
 
                         ek5filename = FileNameHelper.GetDynamicFileName("KK002_EPHPYCNI_");
-
+						#region writer
 						using var file = new ParquetFileWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ek5_output", ek5filename), columns);
                         using var rowGroup = file.AppendRowGroup();
 
@@ -312,12 +312,15 @@ namespace EK5.NormalVersion
                         {
                             objectIdWriter.WriteBatch(KurumKod.ToArray());
                         }//kurumkod
+						#endregion
 
-                        file.Close();
+						file.Close();
 
 						string localFilePath = SftpHelper.LocalFilePath(ek5filename, "ek3_output");
 
-						SftpHelper.ConnectSftp(localFilePath);
+                        string remoteDirectory = "/data/real/EPHPYCNI/";
+
+						SftpHelper.ConnectSftp(localFilePath, remoteDirectory);
 
 					}
                 }

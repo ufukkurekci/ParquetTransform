@@ -544,11 +544,15 @@ namespace EK3.NormalVersion
                         }
 
                         #endregion
+
                         file.Close();
 
                         string localFilePath = SftpHelper.LocalFilePath(ek3filename, "ek3_output");
 
-                        SftpHelper.ConnectSftp(localFilePath);
+                        string remoteDirectory = "/data/real/SFP/";
+
+
+						SftpHelper.ConnectSftp(localFilePath, remoteDirectory);
 
 					}
                 }

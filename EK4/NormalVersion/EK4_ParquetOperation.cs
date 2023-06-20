@@ -152,9 +152,10 @@ namespace EK4.NormalVersion
                             KurumKodu.Add(reader.GetString("KurumKodu"));
 
                         }
-                        #endregion
+						#endregion
 
-                        ek4filename = FileNameHelper.GetDynamicFileName("KK002_EPKBB_");
+						#region parquet_writer_area
+						ek4filename = FileNameHelper.GetDynamicFileName("KK002_EPKBB_");
 
 						using var file = new ParquetFileWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ek4_output", ek4filename), columns);
                         using var rowGroup = file.AppendRowGroup();
@@ -279,12 +280,15 @@ namespace EK4.NormalVersion
                         {
                             objectIdWriter.WriteBatch(KurumKodu.ToArray());
                         }//KurumKodu
+						#endregion
 
-                        file.Close();
+						file.Close();
 
 						string localFilePath = SftpHelper.LocalFilePath(ek4filename, "ek3_output");
 
-						SftpHelper.ConnectSftp(localFilePath);
+                        string remoteDirectory = "/data/real/EPKBB/";
+
+						SftpHelper.ConnectSftp(localFilePath, remoteDirectory);
 
 					}
                 }

@@ -12,10 +12,10 @@ namespace GlobalHelper
 		const string host = "212.174.188.170";
 		const string username = "belbim";
 		const string password = "A9F1JZh5XU";
-		const string remoteDirectory = "/data/real/SFP/";
+		const string remoteDirectory2 = "/data/real/SFP/";
 
 
-		public static void ConnectSftp(string localFilePath)
+		public static void ConnectSftp(string localFilePath, string remoteDirectory)
 		{
 			using (var client = new SftpClient(host, username, password))
 			{
