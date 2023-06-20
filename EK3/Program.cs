@@ -8,7 +8,7 @@ EK3_ParquetOperation.today = string.Format("{0:yyyyMMdd}", DateTime.Now.AddDays(
 EK3_ParquetOperation.tomarrow = string.Format("{0:yyyyMMdd}", DateTime.Now);
 
 EK3_ParquetOperation parquetOperation = new EK3_ParquetOperation();
-await parquetOperation.GetParquetFile();
+await parquetOperation.DirectUpload();
 
 //ek3_validation validation = new ek3_validation();
 //Console.WriteLine("Dosya olusturuluyor ..");
